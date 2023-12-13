@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pro.sky.my.webcalculator.service.Divide;
 import pro.sky.my.webcalculator.service.Minus;
 import pro.sky.my.webcalculator.service.Multiply;
 import pro.sky.my.webcalculator.service.Plus;
@@ -14,11 +15,13 @@ public class CalculatorController {
     Plus plus;
     Minus minus;
     Multiply multiply;
+    Divide divide;
 
-    public CalculatorController(Plus plus, Minus minus, Multiply multiply) {
+    public CalculatorController(Plus plus, Minus minus, Multiply multiply, Divide divide) {
         this.plus = plus;
         this.minus = minus;
         this.multiply = multiply;
+        this.divide = divide;
     }
 
     @GetMapping
@@ -41,6 +44,9 @@ public class CalculatorController {
         return String.format("%f * %f = %.2f\n", num1, num2, multiply.getValueOfExpression(num1, num2));
     }
 
-
+    @GetMapping("/divide")
+    public String divide(@RequestParam double num1, @RequestParam double num2) {
+        return String.format("%f / %f = %.2f\n", num1, num2, divide.getValueOfExpression(num1, num2));
+    }
 }
 
