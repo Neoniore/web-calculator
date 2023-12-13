@@ -12,10 +12,10 @@ import pro.sky.my.webcalculator.service.Plus;
 @RestController
 @RequestMapping("/calculator")
 public class CalculatorController {
-    Plus plus;
-    Minus minus;
-    Multiply multiply;
-    Divide divide;
+    private final Plus plus;
+    private final Minus minus;
+    private final Multiply multiply;
+    private final Divide divide;
 
     public CalculatorController(Plus plus, Minus minus, Multiply multiply, Divide divide) {
         this.plus = plus;
