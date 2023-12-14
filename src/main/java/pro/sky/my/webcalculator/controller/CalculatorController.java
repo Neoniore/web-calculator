@@ -46,7 +46,12 @@ public class CalculatorController {
 
     @GetMapping("/divide")
     public String divide(@RequestParam double num1, @RequestParam double num2) {
-        return String.format("%f / %f = %.2f\n", num1, num2, divide.getValueOfExpression(num1, num2));
+        try {
+            return String.format("%f / %f = %.2f\n", num1, num2, divide.getValueOfExpression(num1, num2));
+        } catch (IllegalArgumentException e) {
+            return "На 0 делить нельзя!";
+        }
+
     }
 }
 
